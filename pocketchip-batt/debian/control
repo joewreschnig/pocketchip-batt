@@ -1,0 +1,14 @@
+Source: pocketchip-batt
+Section: unknown
+Priority: optional
+Maintainer: Ben Young <software@nextthing.co>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: opensource.nextthing.co
+GitHub: https://github.com/nextthingco/pocketchip-batt
+
+Package: pocketchip-batt
+Architecture: all
+Depends: ${misc:Depends}
+Description: A battery monitor service
+ Polls the axp209 regularly for a readout on battery information

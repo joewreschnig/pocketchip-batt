@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+
+battery.sh | grep CHARG_IND | grep -o '.$' > /usr/lib/pocketchip-batt/charging
+
+battery.sh | grep "Battery voltage" | awk '{printf $4}' | sed 's/..$//' > /usr/lib/pocketchip-batt/voltage

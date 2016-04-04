@@ -1,0 +1,6 @@
+[Unit]
+Description=battery polling for pocket-wm
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/pocketchip-batt
