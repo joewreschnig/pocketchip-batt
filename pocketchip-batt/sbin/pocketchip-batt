@@ -4,4 +4,7 @@
 
 battery.sh | grep CHARG_IND | grep -o '.$' > /usr/lib/pocketchip-batt/charging
 
-battery.sh | grep "Battery voltage" | awk '{printf $4}' | sed 's/..$//' > /usr/lib/pocketchip-batt/voltage
+NEW_V=$(battery.sh | grep "Battery voltage" | awk '{printf $4}' | sed 's/..$//')
+OLD_V=$(cat /usr/lib/pocketchip-batt/voltage)
+
+echo "($NEW_V + $OLD_V) / 2" | bc > /usr/lib/pocketchip-batt/voltage
