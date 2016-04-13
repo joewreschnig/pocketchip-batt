@@ -8,11 +8,11 @@ NEW_V=$(battery.sh | grep "Battery voltage" | awk '{printf $4}' | sed 's/..$//')
 OLD_V=$(cat /usr/lib/pocketchip-batt/voltage)
 
 if [[ -z "$NEW_V" ]]; then
-  NEW_V = 4000
+  NEW_V=4000
 fi
 
 if [[ -z "$OLD_V" ]]; then
-  OLD_V = 4000
+  OLD_V=4000
 fi
 
 echo "($NEW_V + $OLD_V) / 2" | bc > /usr/lib/pocketchip-batt/voltage
