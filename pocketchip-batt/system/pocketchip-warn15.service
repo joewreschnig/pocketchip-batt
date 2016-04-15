@@ -1,0 +1,6 @@
+[Unit]
+Description=15% battery warning polling
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/pocketchip-warn15
