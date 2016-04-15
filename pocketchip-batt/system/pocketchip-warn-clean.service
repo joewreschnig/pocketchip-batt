@@ -1,0 +1,6 @@
+[Unit]
+Requires=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'rm /usr/lib/pocketchip-batt/warn*'
