@@ -3,4 +3,5 @@ Requires=multi-user.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c 'rm /usr/lib/pocketchip-batt/warn*'
+User=chip
+ExecStart=/bin/bash -c 'rm $HOME/.pocketchip-batt/warn*'
