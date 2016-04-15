@@ -1,0 +1,9 @@
+[Unit]
+Description=poll battery for 5% warning every minute
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+
+[Install]
+WantedBy=timers.target
