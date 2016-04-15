@@ -12,7 +12,7 @@ if [ ! -f $HOME/.pocketchip-batt/warn05 ] && [ $(cat /usr/lib/pocketchip-batt/ch
     DISPLAY=:0 pocket-exit-5
     mkdir -p $HOME/.pocketchip-batt
     touch $HOME/.pocketchip-batt/warn05
-  else
+  elif [ $(echo " $VOLT < 3390" | bc ) -eq 1 ]; then
     rm $HOME/.pocketchip-batt/warn05
   fi
 
