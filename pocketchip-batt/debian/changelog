@@ -1,3 +1,9 @@
+pocketchip-batt (0.2) stable; urgency=low
+
+  * Add battery warning forms and services.
+
+ -- Ben Young <software@nextthing.co>  Thur, 14 Apr 2016 18:33:05 -0800
+
 pocketchip-batt (0.1) stable; urgency=low
 
   * Initial Release.
