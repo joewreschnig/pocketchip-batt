@@ -16,7 +16,8 @@ if [ ! -f $HOME/.pocketchip-batt/warn15 ] && [ $(cat /usr/lib/pocketchip-batt/ch
   	rm $HOME/.pocketchip-batt/warn*
   fi
 
-elif [ -f $HOME/.pocketchip-batt/warn15 ] && [ $(cat /usr/lib/pocketchip-batt/charging) = "1" ]; then
+#elif [ -f $HOME/.pocketchip-batt/warn15 ] && [ $(cat /usr/lib/pocketchip-batt/charging) = "1" ]; then
+else
 
   while [ -z "$VOLT" ]
   do
