@@ -8,7 +8,7 @@ if [ ! -f /usr/lib/pocketchip-batt/warn05 ] && [ ! $(cat /usr/lib/pocketchip-bat
     VOLT=$(cat /usr/lib/pocketchip-batt/voltage)
   done
 
-  if [ $(echo " $VOLT < 3200" | bc ) -eq 1 ]; then
+  if [ $(echo " $VOLT < 3380" | bc ) -eq 1 ]; then
     DISPLAY=:0 pocket-exit-5
     touch /usr/lib/pocketchip-batt/warn05
   else
