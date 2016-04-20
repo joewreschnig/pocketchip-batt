@@ -1,5 +1,5 @@
 [Unit]
-Description=poll battery for 15% warning every minute
+Description=poll battery for 15% warning every 30 seconds
 
 [Timer]
 OnBootSec=1min

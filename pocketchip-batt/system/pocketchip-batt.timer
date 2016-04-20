@@ -1,8 +1,8 @@
 [Unit]
-Description=poll battery and charging status every 3 seconds
+Description=poll battery and charging status every 2 seconds
 
 [Timer]
-OnBootSec=10sec
+OnBootSec=2sec
 OnUnitActiveSec=2sec
 
 [Install]

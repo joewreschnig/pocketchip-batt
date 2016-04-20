@@ -2,8 +2,8 @@
 Description=poll battery for 00% shutdown
 
 [Timer]
-OnBootSec=1min
-OnUnitActiveSec=1min
+OnBootSec=30sec
+OnUnitActiveSec=30sec
 
 [Install]
 WantedBy=timers.target

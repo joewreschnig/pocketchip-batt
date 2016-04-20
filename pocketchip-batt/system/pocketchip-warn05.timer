@@ -1,9 +1,9 @@
 [Unit]
-Description=poll battery for 5% warning every minute
+Description=poll battery for 5% warning every 30 seconds
 
 [Timer]
-OnBootSec=1min
-OnUnitActiveSec=1min
+OnBootSec=30sec
+OnUnitActiveSec=30sec
 
 [Install]
 WantedBy=timers.target
