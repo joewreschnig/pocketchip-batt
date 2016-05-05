@@ -7,12 +7,17 @@ battery.sh | grep CHARG_IND | grep -o '.$' > /usr/lib/pocketchip-batt/charging
 NEW_V=$(battery.sh | grep "Battery voltage" | awk '{printf $4}' | sed 's/..$//')
 OLD_V=$(cat /usr/lib/pocketchip-batt/voltage)
 
+if [[ -z "$NEW_V" ]] && [[ -z "$OLD_V" ]]; then
+  NEW_V=3700
+  OLD_V=3700
+fi
+
 if [[ -z "$NEW_V" ]]; then
-  NEW_V=4000
+  NEW_V=3700
 fi
 
 if [[ -z "$OLD_V" ]]; then
-  OLD_V=4000
+  OLD_V=3700
 fi
 
 echo "($NEW_V + $OLD_V) / 2" | bc > /usr/lib/pocketchip-batt/voltage

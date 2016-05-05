@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ $(echo " $(cat /usr/lib/pocketchip-batt/voltage) < 3300" | bc ) -eq 1 ]; then
+  DISPLAY=:0 pocket-off & 
+  sleep 3s
+  systemctl poweroff
+fi
