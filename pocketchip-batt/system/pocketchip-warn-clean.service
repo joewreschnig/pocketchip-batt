@@ -5,3 +5,6 @@ Requires=multi-user.target
 Type=oneshot
 User=chip
 ExecStart=/bin/bash -c 'rm $HOME/.pocketchip-batt/warn*'
+
+[Install]
+WantedBy=multi-user.target
