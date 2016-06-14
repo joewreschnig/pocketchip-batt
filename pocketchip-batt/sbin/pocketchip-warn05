@@ -1,11 +1,11 @@
 #!/bin/bash
 VOLT=""
 
-if [ ! -f $HOME/.pocketchip-batt/warn05 ] && [ $(cat /usr/lib/pocketchip-batt/charging) = "0" ]; then
+if [ ! -f $HOME/.pocketchip-batt/warn05 ] && [ "$(cat /usr/lib/pocketchip-batt/charging)" = "0" ]; then
 
   while [ -z "$VOLT" ]
   do
-    VOLT=$(cat /usr/lib/pocketchip-batt/voltage)
+    VOLT="$(cat /usr/lib/pocketchip-batt/voltage)"
   done
 
   if [ $(echo " $VOLT < 3375" | bc ) -eq 1 ]; then
@@ -21,7 +21,7 @@ else
 
   while [ -z "$VOLT" ]
   do
-        VOLT=$(cat /usr/lib/pocketchip-batt/voltage)
+        VOLT="$(cat /usr/lib/pocketchip-batt/voltage)"
   done
 
   if [ $(echo " $VOLT > 3400" | bc ) -eq 1 ]; then
