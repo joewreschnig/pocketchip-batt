@@ -2,8 +2,10 @@
 
 set -ue
 
+STATEDIR=/run/pocketchip-batt
 VOLTAGE=$(battery.sh | sed -En 's/Battery voltage = ([0-9]+).*/\1/p')
 CHARGING=$(battery.sh | sed -n s/CHARG_IND=//p)
 
-echo "${VOLTAGE:-3700}" > /usr/lib/pocketchip-batt/voltage
-echo "${CHARGING:-0}" > /usr/lib/pocketchip-batt/charging
+[ -d $STATEDIR ] || mkdir -p $STATEDIR
+echo "${VOLTAGE:-3700}" > $STATEDIR/voltage
+echo "${CHARGING:-0}" > $STATEDIR/charging

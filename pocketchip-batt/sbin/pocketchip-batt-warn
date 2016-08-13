@@ -5,7 +5,7 @@ set -ue
 WARN05FILE=~/.pocketchip-batt/warn05
 WARN15FILE=~/.pocketchip-batt/warn15
 
-VOLT="$(cat /usr/lib/pocketchip-batt/voltage)"
+VOLT="$(cat /run/pocketchip-batt/voltage)"
 export DISPLAY=:0
 
 # Delete seen-warning flags if they are no longer applicable,
