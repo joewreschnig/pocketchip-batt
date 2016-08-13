@@ -9,6 +9,6 @@ GitHub: https://github.com/nextthingco/pocketchip-batt
 
 Package: pocketchip-batt
 Architecture: all
-Depends: ${misc:Depends}
+Depends: i2c-tools, ${misc:Depends}
 Description: A battery monitor service
  Polls the axp209 regularly for a readout on battery information
