@@ -1,10 +1,37 @@
-#!/bin/sh
+#!/bin/bash
+
+# i2c call processing based on those used in battery.sh,
+# Copyright (c) 2014 by RzBo, Bellesserre, France
+#
+# Permission is granted to use the source code within this
+# file in whole or in part for any use, personal or commercial,
+# without restriction or limitation.
+#
+# No warranties, either explicit or implied, are made as to the
+# suitability of this code for any purpose. Use at your own risk.
 
 set -ue
 
+GET=/usr/sbin/i2cget
+SET=/usr/sbin/i2cset
+
+# Force ADC enable for battery voltage and current
+$SET -y -f 0 0x34 0x82 0xC3
+
+VOLTAGE_MSB=$($GET -y -f 0 0x34 0x78)
+VOLTAGE_LSB=$($GET -y -f 0 0x34 0x79)
+
+VOLTAGE_BIN=$(( ( $VOLTAGE_MSB << 4 ) | ( $VOLTAGE_LSB & 0x0F )))
+VOLTAGE=$(( $VOLTAGE_BIN + $VOLTAGE_BIN / 10))
+
+# We don't care how fast it's charging, only if it is or not. So we
+# don't need to calculate the exact discharge rate, just if it's zero
+# (meaning charging).
+DISCHARGE_MSB=$($GET -y -f 0 0x34 0x7C)
+DISCHARGE_LSB=$($GET -y -f 0 0x34 0x7D)
+CHARGING=$(( ! (($DISCHARGE_MSB | ($DISCHARGE_LSB & 0x1F))) ))
+
 STATEDIR=/run/pocketchip-batt
-VOLTAGE=$(battery.sh | sed -En 's/Battery voltage = ([0-9]+).*/\1/p')
-CHARGING=$(battery.sh | sed -n s/CHARG_IND=//p)
 
 [ -d $STATEDIR ] || mkdir -p $STATEDIR
 echo "${VOLTAGE:-3700}" > $STATEDIR/voltage
