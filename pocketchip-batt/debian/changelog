@@ -2,8 +2,9 @@ pocketchip-batt (0.3.9) unstable; urgency=low
 
   * Merge warning scripts into single script.
   * Rewrite scripts to avoid external process calls.
+  * Use dh_systemd to enable units by default.
 
- -- Joe Wreschnig <joe@yukkurigames.com>  Sat, 13 Aug 2016 18:00:02 +0200
+ -- Joe Wreschnig <joe@yukkurigames.com>  Sat, 13 Aug 2016 18:45:12 +0200
 
 pocketchip-batt (0.3) stable; urgency=low
 
