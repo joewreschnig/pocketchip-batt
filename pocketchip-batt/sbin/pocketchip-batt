@@ -1,23 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
+set -ue
 
+VOLTAGE=$(battery.sh | sed -En 's/Battery voltage = ([0-9]+).*/\1/p')
+CHARGING=$(battery.sh | sed -n s/CHARG_IND=//p)
 
-battery.sh | grep CHARG_IND | grep -o '.$' > /usr/lib/pocketchip-batt/charging
-
-NEW_V=$(battery.sh | grep "Battery voltage" | awk '{printf $4}' | sed 's/..$//')
-OLD_V=$(cat /usr/lib/pocketchip-batt/voltage)
-
-if [[ -z "$NEW_V" ]] && [[ -z "$OLD_V" ]]; then
-  NEW_V=3700
-  OLD_V=3700
-fi
-
-if [[ -z "$NEW_V" ]]; then
-  NEW_V=3700
-fi
-
-if [[ -z "$OLD_V" ]]; then
-  OLD_V=3700
-fi
-
-echo "($NEW_V + $OLD_V) / 2" | bc > /usr/lib/pocketchip-batt/voltage
+echo "${VOLTAGE:-3700}" > /usr/lib/pocketchip-batt/voltage
+echo "${CHARGING:-0}" > /usr/lib/pocketchip-batt/charging
