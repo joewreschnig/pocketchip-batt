@@ -8,9 +8,6 @@ WARN15FILE=~/.pocketchip-batt/warn15
 VOLT="$(cat /usr/lib/pocketchip-batt/voltage)"
 export DISPLAY=:0
 
-# If there's no voltage data available, don't do anything.
-if [ -z "$VOLT" ]; then exit 0; fi
-
 # Delete seen-warning flags if they are no longer applicable,
 # so the warning gets shown again.
 if [ "$VOLT" -gt 3400 ] && [ -f $WARN05FILE ]; then rm $WARN05FILE; fi
