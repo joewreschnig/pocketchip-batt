@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -ue
+
+WARN05FILE=~/.pocketchip-batt/warn05
+WARN15FILE=~/.pocketchip-batt/warn15
+
+VOLT="$(cat /usr/lib/pocketchip-batt/voltage)"
+export DISPLAY=:0
+
+# If there's no voltage data available, don't do anything.
+if [ -z "$VOLT" ]; then exit 0; fi
+
+# Delete seen-warning flags if they are no longer applicable,
+# so the warning gets shown again.
+if [ "$VOLT" -gt 3400 ] && [ -f $WARN05FILE ]; then rm $WARN05FILE; fi
+if [ "$VOLT" -gt 3550 ] && [ -f $WARN15FILE ]; then rm $WARN15FILE; fi
+
+if [ "$VOLT" -lt 3300 ]; then
+    exec pocket-off
+elif [ "$VOLT" -lt 3375 ] && [ ! -f $WARN05FILE ]; then
+    mkdir -p "$(dirname $WARN05FILE)"
+    touch $WARN05FILE
+    exec pocket-exit-5
+elif [ "$VOLT" -lt 3500 ] && [ ! -f $WARN15FILE ]; then
+    mkdir -p "$(dirname $WARN15FILE)"
+    touch $WARN15FILE
+    exec pocket-exit-15
+fi

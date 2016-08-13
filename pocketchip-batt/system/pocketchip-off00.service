@@ -1,7 +1,0 @@
-[Unit]
-Description=00% battery warning polling
-
-[Service]
-Type=oneshot
-User=chip
-ExecStart=/usr/sbin/pocketchip-off00

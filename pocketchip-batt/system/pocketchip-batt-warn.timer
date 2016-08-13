@@ -1,5 +1,5 @@
 [Unit]
-Description=poll battery for 00% shutdown
+Description=poll battery for warning every 30 seconds
 
 [Timer]
 OnBootSec=30sec
