@@ -4,7 +4,7 @@ Requires=multi-user.target
 [Service]
 Type=oneshot
 User=chip
-ExecStart=/bin/bash -c 'rm $HOME/.pocketchip-batt/warn*'
+ExecStart=/bin/sh -c 'rm -f ~/.pocketchip-batt/warn*'
 
 [Install]
 WantedBy=multi-user.target
