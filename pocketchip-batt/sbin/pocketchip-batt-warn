@@ -2,10 +2,14 @@
 
 set -ue
 
+VOLT="$(cat /run/pocketchip-batt/voltage)"
+
+if [ -z "$VOLT" ]; then
+    exit 0
+fi
+
 WARN05FILE=~/.pocketchip-batt/warn05
 WARN15FILE=~/.pocketchip-batt/warn15
-
-VOLT="$(cat /run/pocketchip-batt/voltage)"
 export DISPLAY=:0
 
 # Delete seen-warning flags if they are no longer applicable,
